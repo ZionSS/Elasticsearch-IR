@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Page</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style/style.css') }}">
+    </head>
+    <body> 
+        <div class="container">
+            <form class="search-bar" action="/search/results" method="post">
+                <input class="search-input" name="input" type="text" placeholder="Search Movie...">
+                <button type="submit">
+                    <img src="{{ url_for('static',filename='img/searchicon.png') }}">                     
+                </button>
+            </form>
+            <footer class="footer">
+                <p> &copy; 2022 by Chanon & Phacharaphol </p>
+              </footer>
+        </div>
+    </body>
+</html>

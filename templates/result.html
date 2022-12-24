@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Page</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='style/result.css') }}">
+    </head>
+    <body> 
+        <header class="navbar">
+            <img class="logo" src="{{ url_for('static',filename='img/logoicon.png') }}">
+            <nav>
+                <form class="search-bar" action="/search/results" method="post">
+                    <input class="search-input" name="input" type="text" placeholder="Search Movie...">
+                    <button type="submit">
+                        <img src="{{ url_for('static',filename='img/searchicon.png') }}">                     
+                    </button>
+                </form>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="result">
+                <p>results of the documents : {{res['hits']['total']['value']}}</p>
+            </div>
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                {% for hit in res['hits']['hits'] %}
+                <tbody>
+                    <tr>
+                        <td>{{ hit['_source']['title'] }}</td>
+                        <td>{{ hit['_source']['release_year'] }}</td>
+                        <td>{{ hit['_source']['listed_in'] }}</td>
+                        <td class="description">{{ hit['_source']['description'] }}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            <footer class="footer">
+                <p> &copy; 2022 by Chanon & Phacharaphol </p>
+              </footer>
+        </div>
+    </body>
+</html>
